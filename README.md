@@ -1,4 +1,4 @@
-# BlackHole
+# OpenRec
 Open Source Recorder App made with Flutter
 
 ## Screenshots
