@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:literec/main.dart';
-import 'package:literec/screens/settings_screen.dart';
+import 'package:open_filex/open_filex.dart';
+import 'package:openrec/main.dart';
+import 'package:openrec/screens/settings_screen.dart';
 import 'package:record/record.dart';
-import 'package:open_file/open_file.dart';
 
 final record = Record();
 bool isRecording = false;
@@ -11,13 +11,13 @@ bool first = true;
 String currentName = "";
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
 
   @override
-  _HomeState createState() => _HomeState();
+  HomeState createState() => HomeState();
 }
 
-class _HomeState extends State<Home> {
+class HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
       Future(() {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content:
-              const Text("Please select a Folder to store your Recordings at."),
+              const Text("Please select a folder to store your recordings in."),
           action: SnackBarAction(
             label: "Settings",
             onPressed: () async {
@@ -77,10 +77,8 @@ class _HomeState extends State<Home> {
 
                   DateTime now = DateTime.now();
 
-                  currentName = recPath +
-                      "/" +
-                      now.toString().split(".")[0].replaceAll(":", "#") +
-                      ".mp3";
+                  currentName =
+                      "$recPath/${now.toString().split(".")[0].replaceAll(":", "#")}.mp3";
 
                   await record.start(path: currentName, encoder: a);
 
@@ -91,7 +89,6 @@ class _HomeState extends State<Home> {
                 icon: const Icon(Icons.mic),
                 iconSize: 60.0,
               )),
-          adContainer
         ],
       );
     } else {
@@ -125,8 +122,7 @@ class _HomeState extends State<Home> {
                   } else if (data.hasData) {
                     var items = data.data as Amplitude;
 
-                    return Center(
-                        child: Text("Amplitude: " + items.current.toString()));
+                    return Center(child: Text("Amplitude: ${items.current}"));
                   } else {
                     return const Center(
                       child: CircularProgressIndicator(),
@@ -143,20 +139,20 @@ class _HomeState extends State<Home> {
                   isRecording = false;
                 });
                 first = true;
+                // ignore: use_build_context_synchronously
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: const Text("Succesfully saved!"),
                   action: SnackBarAction(
                       label: "Open",
                       onPressed: () {
-                        OpenFile.open(currentName);
+                        OpenFilex.open(currentName);
                       }),
                 ));
               },
               icon: const Icon(Icons.stop_circle),
               iconSize: 60.0,
             ),
-          ),
-          adContainer2
+          )
         ],
       );
     }

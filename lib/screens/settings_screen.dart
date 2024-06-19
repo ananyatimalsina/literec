@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:literec/main.dart';
+import 'package:openrec/main.dart';
 
 class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+  const Settings({super.key});
 
   @override
-  _SettingsState createState() => _SettingsState();
+  SettingsState createState() => SettingsState();
 }
 
-class _SettingsState extends State<Settings> {
+class SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +19,7 @@ class _SettingsState extends State<Settings> {
       ),
       body: ListView(children: [
         ListTile(
-          title: Text("Recording Path: " + recPath),
+          title: Text("Recording Path: $recPath"),
           subtitle: const Text("Click to change"),
           isThreeLine: true,
           onTap: () async {
@@ -28,7 +28,9 @@ class _SettingsState extends State<Settings> {
 
             if (selectedDirectory != null) {
               prefs.setString("recPath", selectedDirectory);
-              recPath = selectedDirectory;
+              setState(() {
+                recPath = selectedDirectory;
+              });
             }
           },
         ),

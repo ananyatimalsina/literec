@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return const Material(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const <Widget>[
+        children: <Widget>[
           Text(
             "Initialization",
             style: TextStyle(
