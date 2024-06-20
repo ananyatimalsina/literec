@@ -45,7 +45,7 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("LiteRec"),
+          title: const Text("OpenRec"),
           centerTitle: true,
           actions: [
             IconButton(
