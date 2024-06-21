@@ -1,4 +1,4 @@
-package com.np.ananyatimalsina.openrec
+package np.com.ananyatimalsina.litebook
 
 import io.flutter.embedding.android.FlutterActivity
 
